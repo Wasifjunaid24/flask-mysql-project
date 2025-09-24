@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}  
+<style>
+    @keyframes lighteningEffect {
+        0% { color: #0c0a0a; text-shadow: none; }
+        50% { color: #555; text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+        100% { color: #af6464; text-shadow: 0 0 20px rgba(255, 255, 255, 1); }
+    }
+
+    .lightening-heading {
+        animation: lighteningEffect 4s ease-in-out forwards;
+    }
+
+    .hover-image {
+        transition: transform 0.5s ease;
+    }
+
+    .hover-image:hover {
+        transform: scale(1.05);
+    }
+
+    .section-title {
+        color: #000000;
+        font-weight: bold;
+    }
+
+    .section-text {
+        color: #333;
+        font-size: 1.1rem;
+    }
+</style>
+
+<div class="container mt-5">
+    
+    <h1 class="text-center lightening-heading mb-3"><b>Welcome to the Recipe Sharing Platform</b></h1>
+    <p class="text-center fs-5"><b>"Good food is all the sweeter when shared with good friends"</b></p>
+
+    <!-- First Section -->
+    <div class="row align-items-center mt-5">
+        <div class="col-md-6 mb-3 mb-md-0">
+            <img src="{{ url_for('static', filename='images/pic1.png') }}" alt="Homepage first" class="img-fluid hover-image">
+        </div>
+        <div class="col-md-6">
+            <h2 class="section-title">Discover New Recipes</h2>
+            <p class="section-text">
+                Explore a wide variety of delicious recipes shared by our community. From quick meals to gourmet dishes, 
+                you'll find inspiration for your next meal.
+            </p>
+        </div>
+    </div>
+
+    <!-- Second Section -->
+    <div class="row align-items-center mt-5">
+        <div class="col-md-6 order-md-2 mb-3 mb-md-0">
+            <img src="{{ url_for('static', filename='images/pic2.jpg') }}" alt="Homepage second" class="img-fluid hover-image">
+        </div>
+        <div class="col-md-6 order-md-1">
+            <h2 class="section-title">Explore More Delicious Recipes</h2>
+            <p class="section-text">
+                Discover exciting and creative ways to prepare your favorite meals. Our recipe community is filled with great ideas to inspire your next cooking adventure.
+            </p>
+        </div>
+    </div>
+
+    {% if current_user.is_authenticated %}
+        <div class="text-center mt-4">
+            <a href="{{ url_for('index') }}" class="btn btn-success btn-lg">View Recipes</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

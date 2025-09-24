@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 style="color: black !important;" class="text-center text-primary font-weight-bold">{{ recipe.title }}</h2>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card shadow-sm border-light">
+                <div class="card-body">
+                    <h4 class="card-title text-dark">🍴 Ingredients</h4>
+                    <p class="card-text">{{ recipe.ingredients }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow-sm border-light">
+                <div class="card-body">
+                    <h4 class="card-title text-dark">👨‍🍳 Instructions</h4>
+                    <p class="card-text">{{ recipe.instructions }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow-sm border-light mt-4">
+        <div class="card-body">
+            <h4 class="card-title text-dark">⏱️ Cooking Time</h4>
+            <p class="card-text">{{ recipe.cooking_time }}</p>
+        </div>
+    </div>
+
+    <div class="card shadow-sm border-light mt-4">
+        <div class="card-body">
+            <h4 class="card-title text-dark">📂 Category</h4>
+            <p class="card-text">{{ recipe.category }}</p>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <h4 class="text-dark font-weight-bold">💬 Comments</h4>
+        {% for comment in comments %}
+            <div class="card shadow-sm mb-3">
+                <div class="card-body">
+                    <p><strong>{{ comment.author.username }}:</strong> {{ comment.content }}</p>
+                </div>
+            </div>
+        {% else %}
+            <p>No comments yet.</p>
+        {% endfor %}
+    </div>
+
+    {% if current_user.is_authenticated %}
+        <div class="mt-4">
+            <h4 class="text-dark font-weight-bold">➕ Add a Comment</h4>
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.content.label }}
+                    {{ form.content(class="form-control") }}
+                </div>
+                <div class="form-group" style="display: flex; justify-content: space-between; align-items: center;">
+                    {{ form.submit(class="btn btn-primary") }}
+                    <a href="{{ url_for('index') }}" class="btn btn-secondary">Back</a>
+                </div>
+            </form>
+    {% else %}
+        <p class="mt-3">Please <a href="{{ url_for('login') }}">log in</a> to comment.</p>
+    {% endif %}
+
+    {% if recommended %}
+    <div class="mt-4">
+        <h4 class="text-dark font-weight-bold">🍲 Recommended Recipes</h4>
+        <div class="row">
+            {% for r in recommended %}
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ r.title }}</h5>
+                        <p><strong>Category:</strong> {{ r.category }}</p>
+                        <a href="{{ url_for('recipe_detail', recipe_id=r.id) }}" class="btn btn-primary btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

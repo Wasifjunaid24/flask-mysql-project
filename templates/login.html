@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: transparent; flex-direction: column;">
+    <div style="margin-bottom: 20px; text-align: center;">
+        <blockquote style="font-size: 18px; font-style: italic; color: #000000;">
+            "Sharing recipes is a way of passing down traditions and creating connections."
+        </blockquote>
+    </div>
+    <!-- Adjusted the margin-top to place the box below the quote -->
+    <div style="width: 100%; max-width: 400px; padding: 20px; border-radius: 10px; background: rgb(0, 0, 0); box-shadow: 0 4px 8px rgba(141, 11, 141, 0.578); margin-top: 20px;">
+        <h2 style="color: white; text-align: center; margin-bottom: 20px;">Login</h2>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group" style="margin-bottom: 15px;">
+                {{ form.username.label(class="form-label", style="font-weight: bold; color: #ffffff;") }}
+                {{ form.username(class="form-control", style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; color: #ffffff; background-color: #333;") }}
+            </div>
+            <div class="form-group" style="margin-bottom: 20px;">
+                {{ form.password.label(class="form-label", style="font-weight: bold; color: #ffffff;") }}
+                {{ form.password(class="form-control", style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; color: #ffffff; background-color: #333;") }}
+            </div>
+            <div style="text-align: center;">
+                {{ form.submit(class="btn btn-primary", style="padding: 10px 20px; border-radius: 5px; font-size: 16px; background-color:rgb(166, 96, 96) ; color: #000; border: none;") }}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

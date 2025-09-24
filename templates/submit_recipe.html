@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: transparent;">
+    <div style="width: 100%; max-width: 500px; padding: 20px; border-radius: 10px; background: rgb(0, 0, 0); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+        <h2 style="color: #fdfbfb; text-align: center; margin-bottom: 20px;">Submit a New Recipe</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <div class="form-group" style="margin-bottom: 15px;">
+                {{ form.title.label(class="form-label", style="font-weight: bold; color: #ffffff;") }}
+                {{ form.title(class="form-control", style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; color: #ffffff; background-color: #333;") }}
+            </div>
+            <div class="form-group" style="margin-bottom: 15px;">
+                {{ form.ingredients.label(class="form-label", style="font-weight: bold; color: #ffffff;") }}
+                {{ form.ingredients(class="form-control", style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; color: #ffffff; background-color: #333;") }}
+            </div>
+            <div class="form-group" style="margin-bottom: 15px;">
+                {{ form.instructions.label(class="form-label", style="font-weight: bold; color: #ffffff;") }}
+                {{ form.instructions(class="form-control", style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; color: #ffffff; background-color: #333;") }}
+            </div>
+            <div class="form-group" style="margin-bottom: 15px;">
+                {{ form.cooking_time.label(class="form-label", style="font-weight: bold; color: #ffffff;") }}
+                {{ form.cooking_time(class="form-control", style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; color: #ffffff; background-color: #333;") }}
+            </div>
+            <div class="form-group" style="margin-bottom: 15px;">
+                {{ form.image.label(class="form-label", style="font-weight: bold; color: #ffffff;") }}
+                {{ form.image(class="form-control-file", style="color: #ffffff;") }}
+            </div>
+            <div style="text-align: center;">
+                {{ form.submit(class="btn btn-primary", style="padding: 10px 20px; border-radius: 5px; font-size: 16px; background-color: #f5deb3; color: #000; border: none;") }}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

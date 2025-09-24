@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    
+    <h2 class="text-center fw-bold mb-4" style="color: #af6464;">🔍 Search Recipes by Ingredients</h2>
+    
+    <form method="POST" class="mb-4">
+        <div class="mb-3">
+            <label class="form-label">Enter Ingredients (comma separated):</label>
+            <input type="text" name="ingredients" class="form-control" placeholder="e.g., Chicken, Onion">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    {% if recipes %}
+        <h4 class="mt-4" style="color: #af6464;">Matching Recipes:</h4>
+        <div class="table-responsive mt-3">
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Recipe Title</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for recipe in recipes %}
+                    <tr>
+                        <td>{{ recipe.title }}</td>
+                        <td>
+                            <a href="{{ url_for('recipe_detail', recipe_id=recipe.id) }}" class="btn btn-primary btn-sm">View</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    {% elif message %}
+        <div class="alert alert-warning mt-4">
+            {{ message }}
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}
