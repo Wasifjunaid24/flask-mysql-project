@@ -4,3 +4,9 @@ instance/
 .env
 venv/
 *.db
+# Database files
+*.db
+*.sqlite3
+*.sql
+.env
+
